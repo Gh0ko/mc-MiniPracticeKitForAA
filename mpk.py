@@ -2,15 +2,6 @@ import re
 import string
 import sys
 
-#So i made programming crimes i think but it works (without nether structures tp but yeah lmao. Im sorry i know very little of coding) - Ghoko
-#What i did was change the Waiting program to launch on the end and look for end cities - Ghoko
-
-
-#Todo for AA: 
-# - Make it look for more end cities
-# - Locate igloo for zombie doctor split
-# - idk 
-
 
 def escape(s, quotes = ''):
     for q in reversed(quotes):
