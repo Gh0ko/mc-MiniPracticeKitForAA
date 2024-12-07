@@ -1,6 +1,6 @@
 # MiniPracticeKit-AA v0.1
-This is a fork of the MPK made by Knawk exclusively for All Advancements Category.
-(So nether structures tp doesn't work in the AA hotbar because the command was getting too long and i decided to replace nether structures for end structures, however you can still use the normal MPK in the first Hotbar saved with nether structures and all)
+This is a fork of the MPK exclusively for All Advancements Category. All credits to Knawk
+(So nether structures tp doesn't work in the 2nd hotbar because the command was getting too long and i decided to replace nether structures for end structures, however you can still use the normal MPK in the 1st Hotbar saved with everything)
 
 MiniPracticeKitForAA (MPK-AA) is a versatile Minecraft All Advancements speedrunning practice kit that fits in a single command block.
 
@@ -37,10 +37,10 @@ Then start your Minecraft instance and continue to the [Using MPK and presets](#
 ### Using MPK and presets
 
 1. Create a new world in Creative mode.
-2. Load the slot-2 saved hotbar (with default controls, hold `x` and press `2`). You should see several **"preset barrels"**, and the **MPK command block** in the last slot.
+2. Load the slot-2 saved hotbar (with default controls, hold `x` and press `1`). You should see several **"preset barrels"**, and the **MPK command block** in the last slot.
 3. Drop the **preset barrel** for the split you want to play, and then place the **MPK command block**.
 
-Extra: In case you want the normal MPK you can load the slot-1 saved hotbar (with default controls, hold `x` and press `1`)
+Extra: In case you want the normal MPK you can load the slot-1 saved hotbar (with default controls, hold `x` and press `2`)
 
 If you want to edit the inventory in the presets, make other changes, or create your own **preset barrels**,
 then see the [How to customize MPK behavior](#how-to-customize-mpk-behavior) section.
