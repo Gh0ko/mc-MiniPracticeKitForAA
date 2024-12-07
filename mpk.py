@@ -2,6 +2,14 @@ import re
 import string
 import sys
 
+#So i made programming crimes i think but it works (without nether structures tp but yeah lmao. Im sorry i know very little of coding) - Ghoko
+#What i did was change the Waiting program to launch on the end and look for end cities - Ghoko
+
+
+#Todo for AA: 
+# - Make it look for more end cities
+# - Locate igloo for zombie doctor split
+# - idk 
 
 def escape(s, quotes = ''):
     for q in reversed(quotes):
@@ -212,6 +220,10 @@ tellraw @p {"nbt":"O","storage":"pk","interpret":true}
 execute unless data storage pk {T:["minecraft:oak_boat"]} run data remove storage pk I[0][]
 data modify storage pk I[0] insert 1 from storage pg ~.L0.O[1][0]
 tellraw @p {"nbt":"O","storage":"pk","interpret":true}
+---
+# locate endcity
+
+execute if data storage pk {T:["minecraft:purpur_block"]} run data modify storage pk I insert 1 from storage pg ~.L0.E[0]
 
 ---
 
@@ -220,13 +232,6 @@ tellraw @p {"nbt":"O","storage":"pk","interpret":true}
 execute unless data storage pk {T:["minecraft:prismarine"]} run data remove storage pk I[0][]
 data modify storage pk I[0] insert 1 from storage pg ~.L0.O[2][0]
 tellraw @p {"nbt":"O","storage":"pk","interpret":true}
-
----
-
-# locate bastions/fortresses
-
-execute if data storage pk {T:["minecraft:blaze_rod"]} run data modify storage pk I insert 1 from storage pg ~.L0.N[1]
-execute if data storage pk {T:["minecraft:gilded_blackstone"]} run data modify storage pk I insert 1 from storage pg ~.L0.N[0]
 
 ---
 
@@ -245,15 +250,15 @@ execute unless data storage pk {T:["minecraft:netherrack"]} \\
     unless data storage pk {T:["minecraft:gilded_blackstone"]} \\
     run setblock 8 ~ 8 air
 execute if data storage pk {T:["minecraft:end_stone"]} run setblock 8 ~ 8 end_portal
+execute if data storage pk {T:["minecraft:purpur_block"]} run setblock 8 ~ 8 end_portal
 execute unless block 8 ~ 8 air run data modify storage pk I[0] set from storage pg ~.Z[1]
 
 ---
 
-# go to nether structure(s)
+# go to end structure(s)
 
 execute \\
-    unless data storage pk {T:["minecraft:blaze_rod"]} \\
-    unless data storage pk {T:["minecraft:gilded_blackstone"]} \\
+    unless data storage pk {T:["minecraft:purpur_block"]} \\
     run data remove storage pk I[0][]
 
 # if `spreadplayers under` isn't available, prepare to tp to Nether via portal
@@ -261,11 +266,11 @@ scoreboard players reset ?SP pk
 execute store success score ?SP pk run spreadplayers ~ ~ 0 1 under 0 true @p[tag=,tag=_]
 
 # otherwise load waiting mode program
-data modify storage pg _ set from storage pg ~.W
+data modify storage pg _ set from storage pg ~.Y
 execute if score ?SP pk matches 0 run data modify storage pk I[0] set from storage pg ~.Z[0]
 
-say Nether structure terrain teleportation is not supported in 1.15; sending you to Nether instead...
-data modify storage pk T append value "minecraft:netherrack"
+say End structure terrain teleportation is not supported in 1.15; sending you to End instead...
+data modify storage pk T append value "minecraft:end_stone"
 
 ---
 
@@ -368,7 +373,22 @@ execute at @p run $monument
     for fmt in LOCATE_FORMATS
 )
 
-
+LOCATE_END_SUBROUTINES = tuple(
+    compile_spu_program(string.Template("""
+execute in the_end positioned 1 ~ 1 run $endcity
+tellraw @p {"nbt":"O","storage":"pk","interpret":true}
+execute in the_end positioned 1 ~ -1 run $endcity
+tellraw @p {"nbt":"O","storage":"pk","interpret":true}
+execute in the_end positioned -1 ~ 1 run $endcity
+tellraw @p {"nbt":"O","storage":"pk","interpret":true}
+execute in the_end positioned -1 ~ -1 run $endcity
+tellraw @p {"nbt":"O","storage":"pk","interpret":true}
+execute at @p run $endcity
+    """).substitute(
+        endcity=fmt('endcity'),
+    ))
+    for fmt in LOCATE_FORMATS
+)
 # TODO optimize?
 LOCATE_NETHER_SUBROUTINES = tuple(
     compile_spu_program(string.Template("""
@@ -694,10 +714,11 @@ data merge storage pk {H:1}
 """).substitute())
 
 
-WAITING_MODE_PROGRAM = compile_spu_program(string.Template("""
+
+END_WAITING_MODE_PROGRAM = compile_spu_program(string.Template("""
 tag @p add W
 gamemode creative @p
-execute in the_nether run tp @p 0 999999 0
+execute in the_end run tp @p 0 999999 0
 
 say Click one of the coordinates above and press Enter/Return to teleport nearby.
 say Change gamemode to exit.
@@ -723,7 +744,7 @@ execute if entity @p[tag=!W] run data remove storage pk I[0][]
 
 # maintain waiting position, loop
 execute as @p at @s run tp @s 0 999999 0
-data modify storage pk I insert 1 from storage pg ~.W[1]
+data modify storage pk I insert 1 from storage pg ~.Y[1]
 data merge storage pk {H:1}
 
 ---
@@ -748,7 +769,7 @@ execute at @p \\
     if blocks ~80 0 ~80 ~80 0 ~80 ~80 0 ~80 all \\
     run data remove storage pk I[0][]
 data merge storage pk {H:1}
-data modify storage pk I insert 1 from storage pg ~.W[3]
+data modify storage pk I insert 1 from storage pg ~.Y[3]
 
 ---
 
@@ -765,8 +786,6 @@ tag @p remove W
 execute if score $$_ pk matches 0 run data remove storage pk I[0][]
 scoreboard players remove $$_ pk 1
 
-# try again if standing on nether bricks
-execute at @p if block ~ ~-1 ~ nether_bricks run tag @p add W
 
 # try again if within 40 blocks horizontally of marker
 execute at @p[tag=!W] \\
@@ -779,7 +798,7 @@ execute as @p[tag=!W] at @s store result score @s pk \\
 tag @p[tag=!W,scores={pk=400..}] add W
 
 # loop if need to try again
-execute as @p[tag=W] run data modify storage pk I insert 1 from storage pg ~.W[4]
+execute as @p[tag=W] run data modify storage pk I insert 1 from storage pg ~.Y[4]
 
 ---
 
@@ -789,7 +808,6 @@ execute as @p at @s facing entity @e[tag=M] eyes run tp @s ~ ~ ~ ~ 0
 execute at @e[tag=M] run forceload remove ~-80 ~-80 ~80 ~80
 kill @e[tag=M]
 """).substitute())
-
 
 # Single-sequence utility programs.
 # Each first instruction is intentionally invalid so that a given program can be loaded with just:
@@ -894,13 +912,13 @@ def give_mpk():
         '3': phase3,
         'I': MAIN_PROGRAM,
         'S': STRONGHOLD_PROGRAM,
-        'L0': '{S:%s,O:%s,N:%s}' % (STRONGHOLD_SUBROUTINES[0], LOCATE_OVERWORLD_SUBROUTINES[0], LOCATE_NETHER_SUBROUTINES[0]),
-        'L1': '{S:%s,O:%s,N:%s}' % (STRONGHOLD_SUBROUTINES[1], LOCATE_OVERWORLD_SUBROUTINES[1], LOCATE_NETHER_SUBROUTINES[1]),
-        'L2': '{S:%s,O:%s,N:%s}' % (STRONGHOLD_SUBROUTINES[2], LOCATE_OVERWORLD_SUBROUTINES[2], LOCATE_NETHER_SUBROUTINES[2]),
+        'L0': '{S:%s,E:%s,O:%s,N:%s}' % (STRONGHOLD_SUBROUTINES[0],LOCATE_END_SUBROUTINES[0] ,LOCATE_OVERWORLD_SUBROUTINES[0], LOCATE_NETHER_SUBROUTINES[0]),
+        'L1': '{S:%s,E:%s,O:%s,N:%s}' % (STRONGHOLD_SUBROUTINES[1],LOCATE_END_SUBROUTINES[1] ,LOCATE_OVERWORLD_SUBROUTINES[1], LOCATE_NETHER_SUBROUTINES[1]),
+        'L2': '{S:%s,E:%s,O:%s,N:%s}' % (STRONGHOLD_SUBROUTINES[2],LOCATE_END_SUBROUTINES[2] ,LOCATE_OVERWORLD_SUBROUTINES[2], LOCATE_NETHER_SUBROUTINES[2]),
         'N0': NETHER_TERRAIN_PROGRAM_SETUP,
         'N1': NETHER_TERRAIN_PROGRAM_SEARCH,
         'N2': NETHER_TERRAIN_PROGRAM_FINISH,
-        'W': WAITING_MODE_PROGRAM,
+        'Y' : END_WAITING_MODE_PROGRAM,
         'Z': UTIL_PROGRAMS,
     }.items())
     program_carrier = '{id:armor_stand,Marker:1b,Invisible:1b,HandItems:[{Count:1b,id:egg,tag:{%s}}],Tags:["C"]}' % (programs,)
