@@ -1,13 +1,15 @@
-# MiniPracticeKit v0.6
+# MiniPracticeKit-AA v0.1
+This is a fork of the MPK made by Knawk exclusively for All Advancements Category.
+(So nether structures tp doesn't work in the AA hotbar because the command was getting too long and i decided to replace nether structures for end structures, however you can still use the normal MPK in the first Hotbar saved with nether structures and all)
 
-MiniPracticeKit (MPK) is a versatile Minecraft speedrunning practice kit that fits in a single command block.
+MiniPracticeKitForAA (MPK-AA) is a versatile Minecraft All Advancements speedrunning practice kit that fits in a single command block.
 
-You can use it to practice typical 1.16 Any% RSG splits with the built-in **presets**, or create your own presets to do any of the following and more:
+You can use it to practice typical 1.16 AA RSG splits with the built-in **presets**, or create your own presets to do any of the following and more:
 
 - set your inventory (set items, random items, or a mix of both)
 - set your gamemode and difficulty
 - teleport to the Nether/End
-- teleport to terrain near bastions/fortresses
+- teleport to End Cities (no ship guaranteed)
 - teleport directly to the stronghold starter staircase
 - teleport to good blind travel coordinates (and optionally build a portal and/or go through to the Overworld)
 - locate structures (bastion, fortress, buried treasure, shipwreck, monument)
@@ -21,19 +23,7 @@ It also works in Minecraft versions 1.15 to 1.20.4 - you can even directly copy 
 
 ## Demo videos (click to watch)
 
-### Eye spy / Stronghold enter
-
-<a href="https://www.youtube.com/watch?v=zGqgCFJYtR0&list=PL3xWUYc3vlEl4QRGBrZFiGGBLKh6V3KhS" target="_blank">
-  <img src="https://img.youtube.com/vi/zGqgCFJYtR0/0.jpg" width="480">
-</a>
-
-### Blind travel / Nether exit
-
-<a href="https://www.youtube.com/watch?v=-hzr26j5DuQ&list=PL3xWUYc3vlEl4QRGBrZFiGGBLKh6V3KhS" target="_blank">
-  <img src="https://img.youtube.com/vi/-hzr26j5DuQ/0.jpg" width="480">
-</a>
-
-([Full demo playlist](https://www.youtube.com/playlist?list=PL3xWUYc3vlEl4QRGBrZFiGGBLKh6V3KhS))
+WIP
 
 ## How to install and use MiniPracticeKit
 
@@ -41,7 +31,7 @@ It also works in Minecraft versions 1.15 to 1.20.4 - you can even directly copy 
 
 1. If your Minecraft instance is open, close it.
 2. Go to your instance's `.minecraft` folder. If there's a `hotbar.nbt` file there, make a copy as backup.
-3. Download [`hotbar.nbt`](https://github.com/Knawk/mc-MiniPracticeKit/raw/master/hotbar.nbt) and place it directly in the `.minecraft` folder.
+3. Download [`hotbar.nbt`](https://github.com/Gh0ko/mc-MiniPracticeKitForAA/raw/master/hotbar.nbt) and place it directly in the `.minecraft` folder.
 
 Then start your Minecraft instance and continue to the [Using MPK and presets](#using-mpk-and-presets) section.
 
@@ -100,7 +90,7 @@ The MPK's supported **trigger items** and the corresponding actions are describe
 |Netherrack, End Stone|Teleport the player to the corresponding dimension. (Netherrack = Nether, End Stone = End)|Incompatible with other teleport actions (and each other).|
 |Obsidian|Teleport the player to good first-ring blind coordinates. The number of obsidian items in the stack determine what happens at those coordinates. 1 item = build a portal and go through to the Overworld; 2 items = build a portal only; 3 items = don't build a portal.|Incompatible with other teleport actions. Can be slow because it searches for open nether terrain.|
 |End Portal Frame|Teleport the player to a stronghold's starter staircase.|Incompatible with other teleport actions. Always goes to the same stronghold in each world.|
-|Gilded Blackstone, Blaze Rod|Send in chat the coordinates of the related Nether structure(s) in each of the four close Nether quadrants, and put the player in teleport-waiting mode. In this mode, if you click on one of the coordinates in chat and press Enter/Return, then you will be teleported near those coordinates (at most 64 blocks away). (Gilded Blackstone = bastion, Blaze Rod = fortress)|Incompatible with other teleport actions. To exit teleport-waiting mode, simply change gamemode.|
+|Purpur Block| Send in chat the coordinates of the nearest(s) endcity structure , and put the player in teleport-waiting mode. In this mode, if you click on one of the coordinates in chat and press Enter/Return, then you will be teleported near those coordinates (at most 64 blocks away). Incompatible with other teleport actions. To exit teleport-waiting mode, simply change gamemode.|
 |Grass Block, Iron Sword, Map, Ender Eye|Set the player's gamemode to Creative, Survival, Adventure, or Spectator, respectively. (The triggers match the F3+F4 gamemode menu icons.)|Incompatible with each other.|
 |Leather/Golden/Iron/Diamond Helmet|Set the player's difficulty to Peaceful, Easy, Normal, or Hard, respectively.|Incompatible with each other.|
 |Heart of the Sea, Oak Boat, Prismarine|`/locate` the related Overworld structure and show the coordinates in chat. (Heart of the Sea = buried treasure, Oak Boat = shipwreck, Prismarine = monument)|Locating buried treasures in 1.19+ can be very slow.|
