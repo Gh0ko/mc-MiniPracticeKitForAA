@@ -53,7 +53,7 @@ If you want to just update the **MPK command block** without losing your **prese
 
 1. Open or create a Minecraft world in Creative mode.
 2. Give yourself a command block by running `/give @p command_block`, and place it.
-3. Go to [give-mpk.txt](https://raw.githubusercontent.com/Knawk/mc-MiniPracticeKit/dev/give-mpk.txt), and copy all of the text to your clipboard.
+3. Go to [give-mpk.txt](https://raw.githubusercontent.com/Gh0ko/mc-MiniPracticeKitForAA/dev/give-mpk.txt), and copy all of the text to your clipboard.
 4. Paste the text you just copied into the command block, and click "Done".
 5. Activate the command block (for example, with a button) to receive the latest **MPK command block** (you can hover over the item to see the version number).
 6. Replace the old **MPK command block** with the new one, and save your new hotbar (with default controls, hold `c` and press `1`).
@@ -97,4 +97,4 @@ The MPK's supported **trigger items** and the corresponding actions are describe
 |Heart of the Sea, Oak Boat, Prismarine|`/locate` the related Overworld structure and show the coordinates in chat. (Heart of the Sea = buried treasure, Oak Boat = shipwreck, Prismarine = monument)|Locating buried treasures in 1.19+ can be very slow.|
 |Book and Quill|Give the player a potion, that when thrown, runs each of the book's pages as a command. If the book is named (via anvil), the name is copied to the potion so you can tell it apart from others.|Each page should contain a command exactly as it would be typed into chat: no extra space before or after, and no newlines. One potion is given per book.|
 |Book and Quill, named "AUTO"|Run each of the book's pages as a command. The commands are run *after* any teleport/gamemode/difficulty actions.|Each page should contain a command exactly as it would be typed into chat: no extra space before or after, and no newlines.|
-|Barrel|Treat the items in the barrel as trigger items. This allows you combine several trigger items into a single trigger item, like the presets in [`hotbar.nbt`](https://github.com/Knawk/mc-MiniPracticeKit/raw/master/hotbar.nbt).|To get a barrel with items into your inventory, hold CTRL and press pick-block on a barrel with the items you want. Recursion is not supported; barrels inside barrels will not be "unpacked".|
+|Barrel|Treat the items in the barrel as trigger items. This allows you combine several trigger items into a single trigger item, like the presets in [`hotbar.nbt`](https://github.com/Gh0ko/mc-MiniPracticeKitForAA/raw/master/hotbar.nbt).|To get a barrel with items into your inventory, hold CTRL and press pick-block on a barrel with the items you want. Recursion is not supported; barrels inside barrels will not be "unpacked".|
