@@ -37,7 +37,7 @@ Then start your Minecraft instance and continue to the [Using MPK and presets](#
 ### Using MPK and presets
 
 1. Create a new world in Creative mode.
-2. Load the slot-2 saved hotbar (with default controls, hold `x` and press `1`). You should see several **"preset barrels"**, and the **MPK command block** in the last slot.
+2. Load the slot-1 saved hotbar (with default controls, hold `x` and press `1`). You should see several **"preset barrels"**, and the **MPK command block** in the last slot.
 3. Drop the **preset barrel** for the split you want to play, and then place the **MPK command block**.
 
 Extra: In case you want the normal MPK you can load the slot-1 saved hotbar (with default controls, hold `x` and press `2`)
