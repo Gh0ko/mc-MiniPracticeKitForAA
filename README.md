@@ -8,11 +8,10 @@ You can use it to practice typical 1.16 AA RSG splits with the built-in **preset
 
 - set your inventory (set items, random items, or a mix of both)
 - set your gamemode and difficulty
-- teleport to the Nether/End
+- teleport to Stronghold
 - teleport to End Cities (no ship guaranteed)
-- teleport directly to the stronghold starter staircase
-- teleport to good blind travel coordinates (and optionally build a portal and/or go through to the Overworld)
-- locate structures (bastion, fortress, buried treasure, shipwreck, monument)
+- teleport to Nether for Uneasy Alliance
+- locate structures (buried treasure, shipwreck, monument)
 - run your own commands on-demand (for example, to force the dragon to perch)
 
 **Skip to [How to install and use MiniPracticeKit](#how-to-install-and-use-minipracticekit) for download and usage instructions.**
@@ -38,8 +37,10 @@ Then start your Minecraft instance and continue to the [Using MPK and presets](#
 ### Using MPK and presets
 
 1. Create a new world in Creative mode.
-2. Load the slot-1 saved hotbar (with default controls, hold `x` and press `1`). You should see several **"preset barrels"**, and the **MPK command block** in the last slot.
+2. Load the slot-2 saved hotbar (with default controls, hold `x` and press `2`). You should see several **"preset barrels"**, and the **MPK command block** in the last slot.
 3. Drop the **preset barrel** for the split you want to play, and then place the **MPK command block**.
+
+Extra: In case you want the normal MPK you can load the slot-1 saved hotbar (with default controls, hold `x` and press `1`)
 
 If you want to edit the inventory in the presets, make other changes, or create your own **preset barrels**,
 then see the [How to customize MPK behavior](#how-to-customize-mpk-behavior) section.
