@@ -1,7 +1,7 @@
 # MiniPracticeKit-AA v0.1
 This is a fork of the MPK exclusively for All Advancements Category. All credits to Knawk
 
-(So nether structures tp doesn't work in the 1nd hotbar because the command was getting too long and i decided to replace nether structures for end structures, however you can still use the normal MPK in the 2nd Hotbar saved with everything)
+(Nether structures tp doesn't work in the 2nd hotbar, however you can still use the normal MPK with nether structures using the 1st Hotbar saved)
 
 MiniPracticeKitForAA (MPK-AA) is a versatile Minecraft All Advancements speedrunning practice kit that fits in a single command block.
 
