@@ -1,4 +1,4 @@
-# MiniPracticeKit-AA v0.1
+# MiniPracticeKit-AA v0.2
 This is a fork of the MPK exclusively for All Advancements Category. All credits to Knawk
 
 (Nether structures tp doesn't work in the 2nd hotbar, however you can still use the normal MPK with nether structures using the 1st Hotbar saved)
